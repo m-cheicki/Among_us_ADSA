@@ -2,6 +2,10 @@
 
 12/2020 - ESILV - Advanced Data Structures and Algortihms : Among-us mini-problem
 
+Kévin CELIE <br/>
+Mariyam CHEICK ISMAIL <br/>
+ESILV-4-S7-CORE-DIA2
+
 ## Step 1: To organize the tournament
 
 ---
@@ -30,13 +34,46 @@ The players are stored in a structured database with a log complexity to reach a
 **Argue about the question, present the code and display the results.**
 
 1. Propose a data structure to represent a Player and its Score
+
+### TO WRITE
+
 2. Propose a most optimized data structures for the tournament (called database in the following questions)
+
+For the tournament, we think that the AVL tree will be the most optimized.
+
+AVL tree is a binary search tree (BST) in which the difference of heights of left and right subtrees of any node is less than or equal to one. The technique of balancing the height of binary trees was developed by Adelson, Velskii, and Landi and hence given the short form as AVL tree or Balanced Binary Tree.
+
+In an AVL tree, all operations such as acces, search, insertion or deletion, have a logarithmic time complexity (which gives us O(log(n)) with the Big-O notation), in the best case as well in the worst case. Additionally, it is very helpful when we want sorted datas, as we want to rank players by their score.
+
+It is also the most optimized data structure seen in the Advanced Data Structures and Algorithms course.
+
 3. Present and argue about a method that randomize player score at each game (between 0 point to 12 points)
+
+As we decided to make Player as an object with his score, we just randomize his score by using the random package of python to return an integer between 0 and 12.
+
 4. Present and argue about a method to update Players score and the database
+
+As our Player is an object, we compute his score value according to his actions, by adding his score before the action to the score gained by doing the action. And, then, we re-create the AVL tree to update the database.
+
 5. Present and argue about a method to create random games based on the database
+
+### TO WRITE
+
 6. Present and argue about a method to create games based on ranking
+
+As we have made an AVL tree, we can easily have the ranking. Indeed, the AVL tree is quite practical when we want sorted datas, as explained above.
+
+To create games based on ranking, we do an in-order depth traversal of our AVL tree, in order to have increasing order of all the scores. We, then, take ten players by ten to create 10-player games, based on ranking.
+
 7. Present and argue about a method to drop the players and to play game until the last 10 players
+
+One of the main advantages of the AVL tree is that it is adapted when we want sorted datas.
+
+As, we want to eliminate the ten last players in the ranking, we delete the ten firsts of that in-order traversal. And, we recreate games and rebuild the AVL tree with the remaining players, until there are only ten players left.
+
 8. Present and argue about a method which display the TOP10 players and the podium after the final game.
+
+Once there are only ten players left, we show the in-order traversal of that tree. We can invert the order of that list, as that traversal gives us an array with increasing values. With decreasing values, we can have our TOP 10 players. To show the podium, we select only the three-first players.
 
 ---
 
@@ -63,9 +100,65 @@ So 1, 4 and 5 may be an impostor. Considering the second impostor hasn’t seen 
 **Argue about the question, present the code and display the results.**
 
 1. Represent the relation (have seen) between players as a graph, argue about your model.
+
+### ADD IMAGES
+
+In red, the Player 0 is dead. It was a crewmate.
+It has been killed by one of the two imposters in the game.
+So, we can conclude that either Player 1, or Player 4 or Player 5 was an imposter.
+
+In this part, we have to find the second imposter. In order to find him, we know that he didn’t see Player 1, or Player 4, or Player 5.
+
+| If Player 1 is the imposter           | If Player 4 is the imposter           | If Player 5 is the imposter           |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| P1 has seen P0, P2 and P6.            | P4 has seen P0, P3 and P9.            | P5 has seen P0, P7 and P8.            |
+| Possible imposters : 3, 4, 5, 7, 8, 9 | Possible imposters : 1, 2, 5, 6, 7, 8 | Possible imposters : 1, 2, 3, 4, 6, 9 |
+
+We can solve our problem with the graph representation. In our case, our graph will be unweighted and undirected.
+
+To represent a graph model, we can either do it with adjacency lists or adjacency matrices.
+
+An adjacency list is an array of lists. The length of this array will be equal to the number of vertices, so 10 in our case.
+The pros of this representations are :
+
+-   In terms of time complexity, it is fast to :
+    -   Add a new edge : O(1)
+    -   Add or delete a node
+    -   Iterate over all edges because you can access any node neighbors directly
+-   In terms of space complexity, the lesser the number of edges are, the lesser the memory space will be used.
+
+But this representation presents disadvantages like finding the presence or absence of specific edges between any two nodes, which is slightly slower than with the matrix.
+
+An adjacency matrix is a two-dimensional array of VxV size where V is the number of vertices. In our case, it will be a 10x10 matrix. For i and j, two vertices of the graph, if there is an edge between them, the value of matrix[i][j] will be equal to 1. If there is no edge between these two vertices, the value will be 0.
+As we build an undirected graph, the matrix will be symmetric.
+This representation have advantages like :
+
+-   Easy implementation
+-   Fast deletion of an edge : O(1)
+-   Fast detection of edges between two vertices : O(1)
+
+But has also its disadvantages :
+
+-   Consumes a lot of space however is the number of vertices : O(V²)
+-   Adding a vertex is time costly : O(V²)
+
+### OUR CHOICE :
+
 2. Thanks to a graph theory problem, present how to find a set of probable impostors.
+
+To solve our problem, we decided to use the principle of the graph coloring approach. <br/>
+The graph coloring approach is a simple way to label graph components such as regions, vertices and edges under specific constraints. <br/>
+In theory, two adjacent vertices, adjacent edges or adjacent regions, cannot share the same color. Moreover, we have to find the minimum of different colors that respects this constraint (as known as the chromatic number).
+
+In our situation, we can adapt this graph theory approach. Indeed, in the previous question, you can see that we have colored the relations with the possible first imposter in order to say that they cannot be imposters. If the first imposter has seen some players, they cannot be imposters. So, the others are possible imposters.
+
 3. Argue about an algorithm solving your problem.
+
+### TO WRITE
+
 4. Implement the algorithm and show a solution.
+
+### TO WRITE
 
 ---
 
