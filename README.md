@@ -35,7 +35,9 @@ The players are stored in a structured database with a log complexity to reach a
 
 1. Propose a data structure to represent a Player and its Score
 
-### TO WRITE
+To represent the Player, we choose to create an object Player, with his name to identify him, his role in the game he is currently playing, his score in the current game, and also an array with all his previous scores in the previous game.
+
+Each game should contain 10 players.
 
 # ADD IMAGE
 
@@ -59,7 +61,7 @@ As our Player is an object, we compute his score value according to his actions,
 
 5. Present and argue about a method to create random games based on the database
 
-### TO WRITE
+# TO WRITE
 
 6. Present and argue about a method to create games based on ranking
 
@@ -258,6 +260,39 @@ The map is ADSA MAP. You need to go the quickest possible to finish all the rema
 **Argue about the question, present the code and display the results.**
 
 1. Presents and argue about the model of the map.
+
+The model of the map is an undirected and unweighted graph that we represent by an adjacency matrix.
+
 2. Thanks to a graph theory problem, present how to find a route passing through each room only one time.
+
+To find a route in a graph there is several algorithms like :
+
+-   the Kruskal algorithm
+-   the Prim’s algorithm
+-   the Hamiltonian path or Hamiltonian cycle
+
+The two firsts algorithms quoted above are for MST (which stands for Minimum Spanning Tree).
+
+Given a connected and undirected graph, a spanning tree of that graph is a subgraph that is a tree and connects all the vertices together. A single graph can have many different spanning trees. A minimum spanning tree (MST) or minimum weight spanning tree for a weighted, connected and undirected graph is a spanning tree with weight less than or equal to the weight of every other spanning tree. The weight of a spanning tree is the sum of weights given to each edge of the spanning tree.
+Shortly, a Minimum Spanning Tree (MST) problem is : Given connected graph G with positive edge weights, find a minimum weight set of edges that connects all of the vertices.
+
+**Kruskal algorithm** :<br/>
+
+1. Sort all the edges in non-decreasing order of their weight.
+2. Pick the smallest edge. Check if it forms a cycle with the spanning tree formed so far. If a cycle is not formed, include this edge. Else, discard it.
+3. Repeat step#2 until there are (V-1) edges in the spanning tree.
+
+**Prim’s algorithm** : <br/>
+It finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. The algorithm operates by building this tree one vertex at a time, from an arbitrary starting vertex, at each step adding the cheapest possible connection from the tree to another vertex.
+
+The **Hamiltonian path** is a path that visits exactly once each vertex of our graph.
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Hamiltonian.png" alt="Hamiltonian path example" width="250"/>
+
+_source : [Wikipedia](https://en.wikipedia.org/wiki/Hamiltonian_path)_
+
 3. Argue about an algorithm solving your problem.
+
+To solve our problem, we choose to implement the Hamiltonian path. Indeed, we want a path where each room is visited exactly once.
+
 4. Implement the algorithm and show a solution.
