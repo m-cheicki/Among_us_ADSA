@@ -6,7 +6,14 @@ Kévin CELIE <br/>
 Mariyam CHEICK ISMAIL <br/>
 ESILV-4-S7-CORE-DIA2
 
-## Step 1: To organize the tournament
+## Table of contents
+
+-   [Step 1 : To organize the tournament](#step-1-:-To-organize-the-tournament)
+-   [Step 2 : Professor Layton < Guybrush Threepwood < You](#Step-2-:-Professor-Layton-<-Guybrush-Threepwood-<-You)
+-   [Step 3 : I don't see him, but I can give proofs he vents! ](#step-3-:-I-don't-see-him-but-I-can-give-proofs-he-vents-!)
+-   [Step 4 : Secure the last tasks](#step-4-:-Secure-the-last-tasks)
+
+## Step 1 : To organize the tournament
 
 ---
 
