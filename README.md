@@ -113,6 +113,7 @@ In this part, we have to find the second imposter. In order to find him, we know
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | P1 has seen P0, P2 and P6.            | P4 has seen P0, P3 and P9.            | P5 has seen P0, P7 and P8.            |
 | Possible imposters : 3, 4, 5, 7, 8, 9 | Possible imposters : 1, 2, 5, 6, 7, 8 | Possible imposters : 1, 2, 3, 4, 6, 9 |
+|                                       |                                       |                                       |
 
 We can solve our problem with the graph representation. In our case, our graph will be unweighted and undirected.
 
@@ -142,7 +143,7 @@ But has also its disadvantages :
 -   Consumes a lot of space however is the number of vertices : O(V²)
 -   Adding a vertex is time costly : O(V²)
 
-### OUR CHOICE :
+To solve our problem we would rather take the second option. Indeed, even if it consumes a lot of space memory, it is easier to implement. Moreover, we want easy and fast detection of edges between two vertices, which is one of the advantages of this type of representation.
 
 2. Thanks to a graph theory problem, present how to find a set of probable impostors.
 
@@ -154,7 +155,29 @@ In our situation, we can adapt this graph theory approach. Indeed, in the previo
 
 3. Argue about an algorithm solving your problem.
 
-### TO WRITE
+The initial graph coloring problem is implemented following these steps :
+
+-   First, color the first vertex with one color
+-   For the remaining V - 1 vertices, do :
+    -   Consider the currently picked vertex V
+    -   Coloring it with the lowest numbered color that has not been used on any previous colored vertices adjacent to it
+    -   If all previously used colors appear on vertices adjacent to V, assign a new color
+
+We have to adapt this pseudo code in our situation.
+As explained in the first question of this step, to find a set of possible imposters, we first determine who had relations with the first imposter :
+
+-   If Player 1 was the imposter : Player 2 and Player 6 cannot be imposters.
+-   If Player 4 was the imposter : Player 3 and Player 9 cannot be imposters.
+-   If Player 5 was the imposter : Player 7 and Player 8 cannot be imposters.
+
+The others are the possible imposters. <br/>
+So, we decide to color in the same color the possible first imposter and its direct relations. And we conclude that others are possible imposters.
+
+To make it even simpler, we decide to use booleans :
+
+-   If the first imposter saw a player there is a relation between them and he cannot be an imposter (0).
+-   If the first imposter didn’t see a player, there is no relation between them, so he can be a imposter (1)
+    We then show all the players that doesn’t have relation with the imposter
 
 4. Implement the algorithm and show a solution.
 
