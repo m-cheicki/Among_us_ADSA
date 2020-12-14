@@ -37,6 +37,8 @@ The players are stored in a structured database with a log complexity to reach a
 
 ### TO WRITE
 
+# ADD IMAGE
+
 2. Propose a most optimized data structures for the tournament (called database in the following questions)
 
 For the tournament, we think that the AVL tree will be the most optimized.
@@ -101,7 +103,7 @@ So 1, 4 and 5 may be an impostor. Considering the second impostor hasn’t seen 
 
 1. Represent the relation (have seen) between players as a graph, argue about your model.
 
-### ADD IMAGES
+# ADD IMAGE
 
 In red, the Player 0 is dead. It was a crewmate.
 It has been killed by one of the two imposters in the game.
@@ -181,7 +183,7 @@ To make it even simpler, we decide to use booleans :
 
 4. Implement the algorithm and show a solution.
 
-### TO WRITE
+# ADD IMAGE
 
 ---
 
@@ -202,9 +204,46 @@ To unmask impostors, you have the idea to compare the time to travel between any
 **Argue about the question, present the code and display the results.**
 
 1. Presents and argue about the two models of the map.
+
+For this part of the mini-problem, we consider an undirected weighted graph.
+
+An undirected graph is a graph where nodes (or vertices) are connected together and where all edges are bidirectional. This means that going from point A to point B is the same as going from point B to point A.
+
+A weighted graph is a graph where each edge has a weight. A weight is a numerical value. In our case, the weight of each edge of our graph will be the distance between two nodes (and so the time it takes to go from the node to another one, as we consider that 1 cm is equal to 1 second).
+
+We decide to represent our two models as two undirected weighted graphs by computing adjacency matrices.
+Note that the two matrices will be very similar to each other. The difference is that the imposter can take vents so he can travel from a room to another one quicker than a crewmate. Only a few values will differ but they work exactly the same.
+
+As there are 14 rooms and we have an undirected graph, so our both matrices will be a 14x14 symmetric matrix.
+
 2. Argue about a pathfinding algorithm to implement.
+
+A pathfinding algorithm is an algorithm that permits us to find the shortest path between two points. There are multiple pathfinding algorithms. Here are these seen during our course :
+
+-   **Bellman-Ford Algorithm** : solves the single-source problem if edge weights may be negative
+-   **Dijkstra's Algorithm** : solves the single-source shortest path problem with non-negative edge weight
+-   **Floyd-Warshall** : solves all pairs shortest paths
+
+Time and space complexities of these algorithms :
+
+|                                | Dijkstra | Bellman-Ford | Floyd-Warshall |
+| ------------------------------ | -------- | ------------ | -------------- |
+| Space complexity               | O(M)     | O(M)         | O(N²)          |
+| Time complexity                | O(N²)    | O(MN)        | O(N3)          |
+| When edge weights are negative | No       | Yes          | Yes            |
+|                                |          |              |                |
+
+Where N is the number of nodes and M the number of edges.
+
+For our problem, we want to find all shortest paths between every node. The only algorithm we studied that can do this trick is the **Floyd-Warshall** algorithm (but its time and space complexity aren't really great though).
+
 3. Implement the method and show the time to travel for any pair of rooms for both models.
+
+# ADD IMAGE
+
 4. Display the interval of time for each pair of room where the traveler is an impostor.
+
+# ADD IMAGE
 
 ---
 
