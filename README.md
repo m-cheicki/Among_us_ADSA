@@ -8,14 +8,12 @@ ESILV-4-S7-CORE-DIA2
 
 ## Table of contents
 
--   [Step 1 : To organize the tournament](#step-1-:-To-organize-the-tournament)
--   [Step 2 : Professor Layton < Guybrush Threepwood < You](#Step-2-:-Professor-Layton-<-Guybrush-Threepwood-<-You)
--   [Step 3 : I don't see him, but I can give proofs he vents! ](#step-3-:-I-don't-see-him-but-I-can-give-proofs-he-vents-!)
--   [Step 4 : Secure the last tasks](#step-4-:-Secure-the-last-tasks)
+-   [Step 1 : To organize the tournament](https://github.com/m-cheicki/Among_us_ADSA#step-1--to-organize-the-tournament)
+-   [Step 2 : Professor Layton < Guybrush Threepwood < You](https://github.com/m-cheicki/Among_us_ADSA#step-2--professor-layton--guybrush-threepwood--you)
+-   [Step 3 : I don't see him, but I can give proofs he vents! ](https://github.com/m-cheicki/Among_us_ADSA#step-3--i-dont-see-him-but-i-can-give-proofs-he-vents)
+-   [Step 4 : Secure the last tasks](https://github.com/m-cheicki/Among_us_ADSA#step-4--secure-the-last-tasks)
 
 ## Step 1 : To organize the tournament
-
----
 
 Zerator asks you to organize the next “Among Us” tournament for the next ZLAN. Please discover in a short video the game Among us.
 
