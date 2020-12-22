@@ -67,7 +67,7 @@ class Step4_Graph():
 
         return False
 
-    def hamCycle(self):
+    def hamiltonian_cycle(self):
         path = [-1] * self.V
 
         ''' Let us put vertex 0 as the first vertex  
@@ -87,7 +87,7 @@ class Step4_Graph():
         print("Solution Exists: Following",
               "is one possible Hamiltonian path")
         for vertex in path:
-            print(index[vertex], end=" ")
+            print(index[vertex], end="  ")
 
 
 # Graph coloring principle modified to suits our necessities

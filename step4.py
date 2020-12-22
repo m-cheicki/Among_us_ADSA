@@ -1,5 +1,11 @@
 from Graph import Step4_Graph as Graph
 
+
+index = ["Admin", "Cafetaria", "Storage", "Weapons", "Medbay",
+         "O2", "Navigations", "Shield", "Communications", "Electrical",
+         "Lower E.", "Security", "Reactor", "Upper E."]
+
+
 Map_Crew_cafet = [[0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
                   [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                   [1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0],
@@ -30,16 +36,12 @@ Map_Crew_admin = [[0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1],
                   [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0]]
 
-index = ["Admin", "Cafetaria", "Storage", "Weapons", "Medbay",
-         "O2", "Navigations", "Shield", "Communications", "Electrical",
-         "Lower E.", "Security", "Reactor", "Upper E."]
-
 
 g = Graph(14)
 g.graph = Map_Crew_cafet
-g.hamCycle()
+g.hamiltonian_cycle()
 
 
 g = Graph(14)
 g.graph = Map_Crew_admin
-isHamPath = g.hamCycle()
+g.hamiltonian_cycle()
