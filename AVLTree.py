@@ -2,7 +2,7 @@ import sys
 
 
 def AVLfromPlayers(listPlayers, AVLTree):
-    ''' Return an AVL Tree from a list of Player'''
+    ''' Return an AVL Tree from a list of Player '''
     root = None
     for _ in listPlayers:
         root = AVLTree.insert_node(root, _)
@@ -18,6 +18,7 @@ class Node(object):
         self.height = 1
 
 
+# Create the AVL Tree
 class AVLTree(object):
     # Function to insert a node
     def insert_node(self, root, key):
