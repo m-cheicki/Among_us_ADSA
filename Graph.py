@@ -22,9 +22,9 @@ class Step2_Graph(object):
 index = ["Admin", "Cafetaria", "Storage", "Weapons", "Medbay",
          "O2", "Navigations", "Shield", "Communications", "Electrical",
          "Lower E.", "Security", "Reactor", "Upper E."]
+
+
 # Hamiltonian path
-
-
 class Step4_Graph():
     def __init__(self, vertices):
         self.graph = [[0 for column in range(vertices)]
@@ -88,3 +88,26 @@ class Step4_Graph():
               "is one possible Hamiltonian path")
         for vertex in path:
             print(index[vertex], end=" ")
+
+
+# Graph coloring principle modified to suits our necessities
+# If a player has seen another player he cannot be an imposter => relation = 0
+def Color_Graph(graph):
+    return {
+        vertex: {
+            other_vertex: (
+                0 if other_vertex == vertex or other_vertex in graph.dictionary[vertex] else 1
+            )
+            for other_vertex in graph.vertices()
+        } for vertex in graph.vertices()
+    }
+
+
+# Finds a set of possible imposters from a given color graph and a first imposter
+def possible_imposters(colorGraph, _):
+    print(
+        f"If the first imposter is PLAYER {_}, the other imposter is one of these players :")
+    for __ in colorGraph[_]:
+        if colorGraph[_][__] == 1:
+            print(__, end=" ")
+    print()
