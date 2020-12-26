@@ -42,9 +42,10 @@ The players are stored in a structured database with a log complexity to reach a
 
 To represent the Player, we choose to create an object Player, with his name to identify him, his role in the game he is currently playing, his score in the current game, and also an array with all his previous scores in the previous game.
 
-Each game should contain 10 players.
+Each game should contain 10 players.<br/>
+We assume that there are two imposters by default.
 
-# ADD IMAGE
+![](images/uml.png)
 
 2. Propose a most optimized data structures for the tournament (called database in the following questions)
 
@@ -60,13 +61,14 @@ It is also the most optimized data structure seen in the Advanced Data Structure
 
 As we decided to make Player as an object with his score, we just randomize his score by using the random package of python to return an integer between 0 and 12.
 
-4. Present and argue about a method to update Players score and the database
+4. Present and argue about a method to update Players score and the database.
 
 As our Player is an object, we compute his score value according to his actions, by adding his score before the action to the score gained by doing the action. And, then, we re-create the AVL tree to update the database.
 
-5. Present and argue about a method to create random games based on the database
+5. Present and argue about a method to create random games based on the database.
 
-# TO WRITE
+In order to create random games, we decide to first create a list of 100 Players. Then, we shuffle the order of that list. We group them into 10 Players to create 10-Player games. And we randomize the score of each player. <br/>
+We repeat these steps twice more, because we want three random games, in total.
 
 6. Present and argue about a method to create games based on ranking
 
@@ -83,6 +85,10 @@ As, we want to eliminate the ten last players in the ranking, we delete the ten 
 8. Present and argue about a method which display the TOP10 players and the podium after the final game.
 
 Once there are only ten players left, we show the in-order traversal of that tree. We can invert the order of that list, as that traversal gives us an array with increasing values. With decreasing values, we can have our TOP 10 players. To show the podium, we select only the three-first players.
+
+<p align="center">
+     <img src="./images/top10.png">
+ </p>
 
 ---
 
@@ -109,20 +115,23 @@ So 1, 4 and 5 may be an impostor. Considering the second impostor hasn’t seen 
 **Argue about the question, present the code and display the results.**
 
 1. Represent the relation (have seen) between players as a graph, argue about your model.
-
-# ADD IMAGE
-
-In red, the Player 0 is dead. It was a crewmate.
-It has been killed by one of the two imposters in the game.
-So, we can conclude that either Player 1, or Player 4 or Player 5 was an imposter.
+ <p align="center">
+     <img src="./images/graph1.png">
+ </p>
+ In red, the Player 0 is dead. It was a crewmate.
+ It has been killed by one of the two imposters in the game.
+ So, we can conclude that either Player 1, or Player 4 or Player 5 was an imposter.
 
 In this part, we have to find the second imposter. In order to find him, we know that he didn’t see Player 1, or Player 4, or Player 5.
+
+<p align="center">
+     <img src="./images/graph2.png">
+ </p>
 
 | If Player 1 is the imposter           | If Player 4 is the imposter           | If Player 5 is the imposter           |
 | ------------------------------------- | ------------------------------------- | ------------------------------------- |
 | P1 has seen P0, P2 and P6.            | P4 has seen P0, P3 and P9.            | P5 has seen P0, P7 and P8.            |
 | Possible imposters : 3, 4, 5, 7, 8, 9 | Possible imposters : 1, 2, 5, 6, 7, 8 | Possible imposters : 1, 2, 3, 4, 6, 9 |
-|                                       |                                       |                                       |
 
 We can solve our problem with the graph representation. In our case, our graph will be unweighted and undirected.
 
@@ -190,7 +199,15 @@ To make it even simpler, we decide to use booleans :
 
 4. Implement the algorithm and show a solution.
 
-# ADD IMAGE
+<p align="center">
+     <img src="./images/imposters.png">
+ </p>
+
+We can see that it corresponds exactly to our schema (where we represent in white the set of possible imposters)
+
+<p align="center">
+     <img src="./images/graph2.png">
+ </p>
 
 ---
 
@@ -238,7 +255,6 @@ Time and space complexities of these algorithms :
 | Space complexity               | O(M)     | O(M)         | O(N²)          |
 | Time complexity                | O(N²)    | O(MN)        | O(N3)          |
 | When edge weights are negative | No       | Yes          | Yes            |
-|                                |          |              |                |
 
 Where N is the number of nodes and M the number of edges.
 
@@ -246,13 +262,23 @@ For our problem, we want to find all shortest paths between every node. The only
 
 3. Implement the method and show the time to travel for any pair of rooms for both models.
 
-# ADD IMAGE
+<p align="center">
+     <img src="./images/crewmate.png">
+     <img src="./images/imposter.png">
+ </p>
+
+Here is an _extract_ of the output that we have.
+
+In the left, there is the time to travel from the cafeteria door to each room, for a **crewmate**.
+In the right, there is the time to travel from the cafeteria door to each room, for an **imposter**.
 
 4. Display the interval of time for each pair of room where the traveler is an impostor.
 
-# ADD IMAGE
+In order to do so, you just have to run the Floyd-Warshall algorithm in the imposter's map. You will see the full output. Here is another extract of the output.
 
----
+<p align="center"> 
+    <img src="./images/imposter2.png">
+</p>
 
 ## Step 4 : Secure the last tasks
 
@@ -301,3 +327,10 @@ _source : [Wikipedia](https://en.wikipedia.org/wiki/Hamiltonian_path)_
 To solve our problem, we choose to implement the Hamiltonian path. Indeed, we want a path where each room is visited exactly once.
 
 4. Implement the algorithm and show a solution.
+
+If we start from the cafeteria, the crewmate won’t be able to visit exactly once each room of the map. There is no solution.
+But if he decides to start from the admin room for instance, he can visit every room once.
+
+<p>
+    <img src="./images/hamiltonianpath.png">
+</p>

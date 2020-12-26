@@ -13,9 +13,9 @@ def moyenne(liste):
 
 
 class Game:
-    def __init__(self, players, nbImpostor=2):
+    def __init__(self, players, nb_impostor=2):
         self.players = players
-        self.nbImpostor = nbImpostor
+        self.nb_impostor = nb_impostor
 
     def __str__(self):
         return " ".join([f"{_.name} : {_.score}" for _ in self.players])
