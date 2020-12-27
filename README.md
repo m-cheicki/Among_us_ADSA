@@ -6,6 +6,8 @@ Kévin CELIE <br/>
 Mariyam CHEICK ISMAIL <br/>
 ESILV-4-S7-CORE-DIA2
 
+<a href="./CELIE_CHEICK-ISMAIL_Among_Us_Report.pdf" download>Click here to download the pdf version of this report. </a>
+
 ## Table of contents
 
 -   [Step 1 : To organize the tournament](https://github.com/m-cheicki/Among_us_ADSA#step-1--to-organize-the-tournament)
