@@ -1,6 +1,6 @@
 class Step2_Graph(object):
     def __init__(self, dictionary=None):
-        if dictionary == None:
+        if dictionary is None:
             dictionary = {}
         self.dictionary = dictionary
 
@@ -27,8 +27,7 @@ index = ["Admin", "Cafetaria", "Storage", "Weapons", "Medbay",
 # Hamiltonian path
 class Step4_Graph():
     def __init__(self, vertices):
-        self.graph = [[0 for column in range(vertices)]
-                      for row in range(vertices)]
+        self.graph = [[0 for _ in range(vertices)] for _ in range(vertices)]
         self.V = vertices
 
     ''' Check if this vertex is an adjacent vertex  
@@ -39,11 +38,7 @@ class Step4_Graph():
         if self.graph[path[pos-1]][v] == 0:
             return False
 
-        for vertex in path:
-            if vertex == v:
-                return False
-
-        return True
+        return all(vertex != v for vertex in path)
 
     def hamCycleUtil(self, path, pos):
         if pos == self.V:

@@ -9,9 +9,7 @@ def Floyd_Warshall(M):
     for k in range(len(M)):
         for i in range(len(M)):
             for j in range(len(M)):
-                if M[i][j] > M[i][k] + M[k][j]:
-                    M[i][j] = M[i][k] + M[k][j]
-
+                M[i][j] = min(M[i][j], M[i][k] + M[k][j])
     for i in range(len(index)):
         for j in range(i+1, len(index)):
             print(f"{index[i]} - {index[j]} : {M[i][j]}")
