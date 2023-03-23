@@ -21,22 +21,14 @@ class Player:
         msg = ""
         if self.role == "imposter":
             self.score += 1
-            msg = player.name + " has been killed by " + self.name
+            return f"{player.name} has been killed by {self.name}"
         else:
-            msg = "You are a crewmate, you cannot kill"
-        return msg
+            return "You are a crewmate, you cannot kill"
 
     def win(self):
         msg = ""
-        if self.role == "imposter":
-            self.score += 10
-            msg = self.name + " wins the game with a total of " + \
-                str(self.score) + " points"
-        else:
-            self.score += 5
-            msg = self.name + " wins the game with a total of " + \
-                str(self.score) + " points"
-        return msg
+        self.score += 10 if self.role == "imposter" else 5
+        return f"{self.name} wins the game with a total of {self.score} points"
 
     def __str__(self):
         # return f"My name is {self.name}  { f'and I am a {self.role}' if self.role else ''} \n\rMy actual score is : {self.score}"

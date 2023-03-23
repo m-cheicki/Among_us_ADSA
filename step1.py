@@ -19,7 +19,7 @@ def randomize_score(games):
 
 
 # Three random games
-for count in range(3):
+for _ in range(3):
     random.shuffle(list_players)
     all_games = create_games(list_players)
     randomize_score(all_games)

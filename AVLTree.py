@@ -36,19 +36,13 @@ class AVLTree(object):
         # Update the balance factor and balance the tree
         balanceFactor = self.getBalance(root)
         if balanceFactor > 1:
-            if key < root.left.key:
-                return self.rightRotate(root)
-            else:
+            if key >= root.left.key:
                 root.left = self.leftRotate(root.left)
-                return self.rightRotate(root)
-
+            return self.rightRotate(root)
         if balanceFactor < -1:
-            if key > root.right.key:
-                return self.leftRotate(root)
-            else:
+            if key <= root.right.key:
                 root.right = self.rightRotate(root.right)
-                return self.leftRotate(root)
-
+            return self.leftRotate(root)
         return root
 
     # Function to delete a node
@@ -85,62 +79,52 @@ class AVLTree(object):
 
         # Balance the tree
         if balanceFactor > 1:
-            if self.getBalance(root.left) >= 0:
-                return self.rightRotate(root)
-            else:
+            if self.getBalance(root.left) < 0:
                 root.left = self.leftRotate(root.left)
-                return self.rightRotate(root)
+            return self.rightRotate(root)
         if balanceFactor < -1:
-            if self.getBalance(root.right) <= 0:
-                return self.leftRotate(root)
-            else:
+            if self.getBalance(root.right) > 0:
                 root.right = self.rightRotate(root.right)
-                return self.leftRotate(root)
+            return self.leftRotate(root)
         return root
 
     # Function to perform left rotation
     def leftRotate(self, z):
         y = z.right
-        if y != None:
-            T2 = y.left
-            y.left = z
-            z.right = T2
-            z.height = 1 + max(self.getHeight(z.left),
-                               self.getHeight(z.right))
-            y.height = 1 + max(self.getHeight(y.left),
-                               self.getHeight(y.right))
-            return y
-        else:
+        if y is None:
             return z
+        T2 = y.left
+        y.left = z
+        z.right = T2
+        z.height = 1 + max(self.getHeight(z.left),
+                           self.getHeight(z.right))
+        y.height = 1 + max(self.getHeight(y.left),
+                           self.getHeight(y.right))
+        return y
 
     # Function to perform right rotation
 
     def rightRotate(self, z):
         y = z.left
-        if y != None:
-            T3 = y.right
-            y.right = z
-            z.left = T3
-
-            z.height = 1 + max(self.getHeight(z.left),
-                               self.getHeight(z.right))
-            y.height = 1 + max(self.getHeight(y.left),
-                               self.getHeight(y.right))
-            return y
-        else:
+        if y is None:
             return z
+        T3 = y.right
+        y.right = z
+        z.left = T3
+
+        z.height = 1 + max(self.getHeight(z.left),
+                           self.getHeight(z.right))
+        y.height = 1 + max(self.getHeight(y.left),
+                           self.getHeight(y.right))
+        return y
 
     # Get the height of the node
     def getHeight(self, root):
-        if not root:
-            return 0
-        return root.height
+        return root.height if root else 0
 
     # Get balance factore of the node
     def getBalance(self, root):
-        if not root:
-            return 0
-        return self.getHeight(root.left) - self.getHeight(root.right)
+        return self.getHeight(root.left) - self.getHeight(root.right) if root else 0
 
     def getMinValueNode(self, root):
         if root is None or root.left is None:
@@ -155,9 +139,11 @@ class AVLTree(object):
         self.inOrder(root.right)
 
     def getInOrder(self, root):
-        if not root:
-            return []
-        return self.getInOrder(root.left) + [root.key] + self.getInOrder(root.right)
+        return (
+            self.getInOrder(root.left) + [root.key] + self.getInOrder(root.right)
+            if root
+            else []
+        )
 
     # Print the tree
     def printHelper(self, currPtr, indent, last):
